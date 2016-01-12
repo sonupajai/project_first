@@ -1,0 +1,18 @@
+<h1> Articles list</h1>
+<%= link_to "new" ,new_article_path %>
+<table>
+
+<tr>
+	<th>Article </th>
+	<th>Description </th>
+</tr>
+
+<% @articles.each do |article| %>
+	<tr>
+		<td> <%= article.title%></td>
+		<td><%= article.description %></td>
+		<td><%= link_to "edit", edit_article_path(article) %></td>
+		<td><%= link_to "show", article_path(article) %></td>		
+		<td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} %></td>
+	</tr>
+<% end %>
