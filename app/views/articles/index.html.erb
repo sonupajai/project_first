@@ -1,18 +1,40 @@
-<h1> Articles list</h1>
-<%= link_to "new" ,new_article_path %>
-<table>
-
-<tr>
-	<th>Article </th>
-	<th>Description </th>
-</tr>
-
-<% @articles.each do |article| %>
+<h1><center> Articles list</center></h1>
+<%= link_to "Add+" ,new_article_path, class: "btn btn-primary btn-md", role: "button", id: "btn_add" %><br>
+<br>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+      <tr>
+		<th>Article </th>
+		<th>Description </th>
+        <th >Edit</th>
+        <th>Show</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @articles.each do |article| %>
 	<tr>
 		<td> <%= article.title%></td>
 		<td><%= article.description %></td>
-		<td><%= link_to "edit", edit_article_path(article) %></td>
-		<td><%= link_to "show", article_path(article) %></td>		
-		<td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} %></td>
+
+		<td>		
+		<%= link_to edit_article_path(article) do %>
+  		<i class="fa fa-pencil-square-o fa-lg"></i> 
+		<% end %>
+		</td>
+		<td>		
+		<%= link_to article_path(article) do %>
+  		<i class="fa fa-eye fa-lg"></i> 
+		<% end %>
+		</td>
+		
+		<td>		
+		<%= link_to article_path(article) , method: :delete, data: {confirm: "Are you sure?"}  do %>
+  		<i class="fa fa-trash-o fa-lg"></i> 
+		<% end %>
+		</td>
 	</tr>
 <% end %>
+    </tbody>
+  </table>

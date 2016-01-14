@@ -1,2 +1,22 @@
+$navbar-default-bg: #080808 ;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+
+.intro { 
+    color: blue !important;
+}
+.intro:hover {
+font-size: 1.7em;
+text-transform: uppercase;
+letter-spacing: -1px;
+font-weight: bold;
+}
+
+.jumbotron {
+background-image: asset-url('City_Landscape_Background.jpg');
+background-size: cover;
+height: 550px;
+
+}
