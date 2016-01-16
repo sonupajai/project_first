@@ -1,6 +1,16 @@
 <h1><center> Articles list</center></h1>
 <%= link_to "Add+" ,new_article_path, class: "btn btn-primary btn-md", role: "button", id: "btn_add" %><br>
 <br>
+
+-------------view--------------
+<%= render 'article', obj: @articles %>
+<div align="center">
+<%= will_paginate %>
+</div>
+-----------view----------------------
+
+
+
  <table class="table table-striped">
     <thead>
       <tr>
@@ -16,8 +26,9 @@
      <% @articles.each do |article| %>
 	<tr>
 		<td> <%= article.title%></td>
-		<td><%= article.description %></td>
-
+		<td><%= article.description %><small> Created by <%= article.user.username if article.user%>
+		Updated at <%= time_ago_in_words(article.updated_at)  %> ago</td>
+<% if logged_in? && current_user == article.user %>
 		<td>		
 		<%= link_to edit_article_path(article) do %>
   		<i class="fa fa-pencil-square-o fa-lg"></i> 
@@ -34,6 +45,7 @@
   		<i class="fa fa-trash-o fa-lg"></i> 
 		<% end %>
 		</td>
+	<% end %>
 	</tr>
 <% end %>
     </tbody>
